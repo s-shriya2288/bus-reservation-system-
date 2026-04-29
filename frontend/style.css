@@ -1,0 +1,348 @@
+:root {
+    --bg-color: #0f172a;
+    --panel-bg: rgba(30, 41, 59, 0.7);
+    --panel-border: rgba(255, 255, 255, 0.1);
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --seat-available: #334155;
+    --seat-selected: #3b82f6;
+    --seat-booked: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Dynamic abstract background */
+.background-decor {
+    position: fixed;
+    top: -20vh;
+    left: -10vw;
+    width: 60vw;
+    height: 60vh;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(15,23,42,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(80px);
+}
+.background-decor.blur-2 {
+    top: auto;
+    bottom: -20vh;
+    right: -10vw;
+    left: auto;
+    background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, rgba(15,23,42,0) 70%);
+}
+
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--panel-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logo span {
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--text-primary);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.booking-dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    border-radius: 1.5rem;
+    padding: 2rem;
+}
+
+.left-section h2, .right-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.controls select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.bus-container {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--panel-border);
+    border-radius: 2rem;
+    padding: 2rem 3rem;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.bus-front {
+    text-align: center;
+    background: var(--seat-available);
+    border-radius: 1rem 1rem 0.5rem 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border: 1px dashed var(--text-secondary);
+}
+
+.seat-map {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    row-gap: 1.5rem;
+}
+
+.seat-map > .seat:nth-child(4n+3) {
+    grid-column-start: 4; /* Creates the aisle space */
+}
+.seat-map > .seat:nth-child(4n+2) {
+    grid-column-start: 2; /* Normal position */
+}
+/* This trick leaves the 3rd column empty for an aisle. The CSS Grid is 4 cols.
+   Wait, if we want an aisle in a 4 col grid, we can just style it dynamically or use a spacer. 
+   Actually, the simplest way is 5 columns with a hidden middle column. 
+*/
+.seat-map.bus-layout {
+    grid-template-columns: 40px 40px 20px 40px 40px;
+    justify-content: center;
+}
+
+.seat-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aisle-spacer {
+    width: 20px;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+    background-color: var(--seat-available);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    color: transparent;
+    user-select: none;
+}
+
+.seat:hover:not(.occupied) {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    color: rgba(255,255,255,0.8);
+}
+
+.seat.selected {
+    background-color: var(--seat-selected);
+    color: white;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+}
+
+.seat.occupied {
+    background-color: var(--seat-booked);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.legend-item .seat {
+    width: 20px;
+    height: 20px;
+    cursor: default;
+}
+
+.legend-item .seat:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.right-section {
+    padding: 2rem;
+    border-radius: 1rem;
+    height: fit-content;
+}
+
+.summary {
+    min-height: 100px;
+    margin-bottom: 2rem;
+}
+
+.empty-state {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.selected-seat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.selected-seat-item:last-child {
+    border-bottom: none;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid var(--panel-border);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.primary-btn:hover:not(:disabled) {
+    background: var(--primary-hover);
+}
+
+.primary-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.primary-btn:disabled {
+    background: var(--seat-available);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+.status-msg {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    min-height: 1.5rem;
+}
+
+.status-msg.success { color: #4ade80; }
+.status-msg.error { color: #f87171; }
+
+@media (max-width: 900px) {
+    .booking-dashboard {
+        grid-template-columns: 1fr;
+    }
+}

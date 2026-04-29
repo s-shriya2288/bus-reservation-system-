@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Bus</title>
+    <!-- Modern web font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-decor"></div>
+    <div class="background-decor blur-2"></div>
+    
+    <header class="glass-panel">
+        <div class="logo">🚌 <span>AntiBus Premium</span></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Routes</a>
+            <a href="#">My Bookings</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="hero">
+            <h1>Book Your Journey.</h1>
+            <p>Experience the most comfortable buses with our new premium fleet.</p>
+        </div>
+
+        <div class="booking-dashboard glass-panel">
+            <div class="left-section">
+                <div class="controls">
+                    <h2>Select Route</h2>
+                    <select id="route-select">
+                        <option value="1">NYC to Boston (10:00 AM)</option>
+                        <option value="2">SF to LA (1:00 PM)</option>
+                    </select>
+                </div>
+                
+                <div class="bus-container">
+                    <div class="bus-front">Driver</div>
+                    <div class="seat-map" id="seat-map">
+                        <!-- Seats will be injected by app.js -->
+                    </div>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="seat available"></div> <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="seat selected"></div> <span>Selected</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="seat occupied"></div> <span>Booked</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section glass-panel">
+                <h2>Reservation Details</h2>
+                <div class="summary" id="reservation-summary">
+                    <p class="empty-state">No seats selected yet.</p>
+                </div>
+                <div class="form-group">
+                    <label for="passenger-name">Passenger Name</label>
+                    <input type="text" id="passenger-name" placeholder="Enter your full name">
+                </div>
+                <button class="primary-btn" id="book-btn" disabled>Confirm Booking</button>
+                <div id="status-message" class="status-msg"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+1,AC Sleeper,Delhi Express,Delhi,Jaipur,10:00 AM,800,39
+2,AC Semi-Sleeper,Rajdhani Bus,Mumbai,Pune,11:30 AM,650,12
+3,Volvo AC,Southern Travels,Bangalore,Chennai,08:00 PM,1200,10
+4,Non-AC Seater,Himalayan Route,Chandigarh,Shimla,06:00 AM,400,25
+5,AC Sleeper,Tech Corridor,Hyderabad,Vijayawada,09:00 PM,900,8
+6,AC Seater,DTC AC Spl,Delhi,Noida,08:30 AM,150,45
+7,AC Seater,BEST AC King,Mumbai,Navi Mumbai,09:15 AM,120,22
+8,Volvo AC,BMTC Volvo,Bangalore,Mysore,07:45 AM,350,35
+9,Non-AC Seater,MTC Deluxe,Chennai,Pondicherry,04:30 PM,250,15
+10,AC Sleeper,Jaipur Express,Jaipur,Delhi,02:00 PM,800,38
+11,AC Semi-Sleeper,Pune Fastlink,Pune,Mumbai,03:30 PM,650,15
+12,Volvo AC,Kaveri Travels,Chennai,Bangalore,09:00 PM,1200,18
+13,Non-AC Seater,Shimla Flyer,Shimla,Chandigarh,12:00 PM,400,10
+14,AC Sleeper,Andhra Express,Vijayawada,Hyderabad,06:00 AM,900,30
+15,Volvo AC,Shatabdi Bus,Delhi,Mumbai,05:00 PM,2500,45
+16,Volvo AC,Shatabdi Bus,Mumbai,Delhi,06:00 PM,2500,42
+17,AC Semi-Sleeper,KSTDC Connect,Bangalore,Goa,07:00 AM,1500,50
+18,AC Semi-Sleeper,KSTDC Connect,Goa,Bangalore,05:00 PM,1500,48
+19,AC Sleeper,RedBus Special,Delhi,Manali,05:30 PM,1800,20
